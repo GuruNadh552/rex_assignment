@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../models/claim.dart';
-import '../utils/constants.dart';
+import 'package:rex_assignment/models/claim.dart';
+import 'package:rex_assignment/utils/constants.dart';
 
 abstract class ClaimsService {
   Future<List<Claim>> getClaims();
@@ -38,15 +38,11 @@ abstract class ClaimsService {
   );
 }
 
-class LocalClaimsService
-    implements ClaimsService {
-
+class LocalClaimsService implements ClaimsService {
   Future<List<Claim>> _loadClaims() async {
-    final prefs =
-        await SharedPreferences.getInstance();
+    final prefs = await SharedPreferences.getInstance();
 
-    final jsonString =
-        prefs.getString(
+    final jsonString = prefs.getString(
       Constants.storageKey,
     );
 
@@ -54,8 +50,7 @@ class LocalClaimsService
       return [];
     }
 
-    final List decoded =
-        jsonDecode(jsonString);
+    final List decoded = jsonDecode(jsonString);
 
     return decoded
         .map(
@@ -67,8 +62,7 @@ class LocalClaimsService
   Future<void> _saveClaims(
     List<Claim> claims,
   ) async {
-    final prefs =
-        await SharedPreferences.getInstance();
+    final prefs = await SharedPreferences.getInstance();
 
     await prefs.setString(
       Constants.storageKey,
@@ -91,8 +85,7 @@ class LocalClaimsService
   Future<Claim?> getClaimById(
     String id,
   ) async {
-    final claims =
-        await _loadClaims();
+    final claims = await _loadClaims();
 
     try {
       return claims.firstWhere(
@@ -107,11 +100,9 @@ class LocalClaimsService
   Future<void> saveClaim(
     Claim claim,
   ) async {
-    final claims =
-        await _loadClaims();
+    final claims = await _loadClaims();
 
-    final index =
-        claims.indexWhere(
+    final index = claims.indexWhere(
       (e) => e.id == claim.id,
     );
 
@@ -128,8 +119,7 @@ class LocalClaimsService
   Future<void> deleteClaim(
     String id,
   ) async {
-    final claims =
-        await _loadClaims();
+    final claims = await _loadClaims();
 
     claims.removeWhere(
       (e) => e.id == id,
@@ -142,11 +132,9 @@ class LocalClaimsService
   Future<void> submitClaim(
     String id,
   ) async {
-    final claims =
-        await _loadClaims();
+    final claims = await _loadClaims();
 
-    final claim =
-        claims.firstWhere(
+    final claim = claims.firstWhere(
       (e) => e.id == id,
     );
 
@@ -154,8 +142,7 @@ class LocalClaimsService
       return;
     }
 
-    claim.status =
-        ClaimStatus.submitted;
+    claim.status = ClaimStatus.submitted;
 
     await _saveClaims(claims);
   }
@@ -164,11 +151,9 @@ class LocalClaimsService
   Future<void> approveClaim(
     String id,
   ) async {
-    final claims =
-        await _loadClaims();
+    final claims = await _loadClaims();
 
-    final claim =
-        claims.firstWhere(
+    final claim = claims.firstWhere(
       (e) => e.id == id,
     );
 
@@ -176,8 +161,7 @@ class LocalClaimsService
       return;
     }
 
-    claim.status =
-        ClaimStatus.approved;
+    claim.status = ClaimStatus.approved;
 
     await _saveClaims(claims);
   }
@@ -187,11 +171,9 @@ class LocalClaimsService
     String id,
     String comments,
   ) async {
-    final claims =
-        await _loadClaims();
+    final claims = await _loadClaims();
 
-    final claim =
-        claims.firstWhere(
+    final claim = claims.firstWhere(
       (e) => e.id == id,
     );
 
@@ -199,11 +181,9 @@ class LocalClaimsService
       return;
     }
 
-    claim.status =
-        ClaimStatus.rejected;
+    claim.status = ClaimStatus.rejected;
 
-    claim.rejectionComments =
-        comments;
+    claim.rejectionComments = comments;
 
     await _saveClaims(claims);
   }
@@ -212,11 +192,9 @@ class LocalClaimsService
   Future<void> moveToDraft(
     String id,
   ) async {
-    final claims =
-        await _loadClaims();
+    final claims = await _loadClaims();
 
-    final claim =
-        claims.firstWhere(
+    final claim = claims.firstWhere(
       (e) => e.id == id,
     );
 
@@ -224,8 +202,7 @@ class LocalClaimsService
       return;
     }
 
-    claim.status =
-        ClaimStatus.draft;
+    claim.status = ClaimStatus.draft;
 
     await _saveClaims(claims);
   }

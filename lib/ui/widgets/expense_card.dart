@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:rex_assignment/models/expense_type.dart';
 
-import '../screens/receipt_view_screen.dart';
-import '../utils/currency_formatter.dart';
+import 'package:rex_assignment/ui/receipt_view_screen.dart';
+import 'package:rex_assignment/utils/currency_formatter.dart';
 
 class ExpenseCard extends StatelessWidget {
   final ExpenseItem item;
@@ -37,73 +37,55 @@ class ExpenseCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Padding(
-        padding:
-            const EdgeInsets.all(
+        padding: const EdgeInsets.all(
           16,
         ),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             Row(
               children: [
-
                 Expanded(
                   child: Text(
-                    item.type.name
-                        .toUpperCase(),
-                    style:
-                        const TextStyle(
-                      fontWeight:
-                          FontWeight.bold,
+                    item.type.name.toUpperCase(),
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
-
                 Text(
                   CurrencyFormatter.format(
                     item.amount,
                   ),
-                  style:
-                      const TextStyle(
-                    fontWeight:
-                        FontWeight.bold,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-
                 if (onEdit != null)
                   IconButton(
                     icon: const Icon(
                       Icons.edit_outlined,
                     ),
-                    onPressed:
-                        onEdit,
+                    onPressed: onEdit,
                   ),
-
                 if (onDelete != null)
                   IconButton(
                     icon: const Icon(
                       Icons.delete_outline,
                     ),
-                    onPressed:
-                        onDelete,
+                    onPressed: onDelete,
                   ),
               ],
             ),
-
             const SizedBox(
               height: 8,
             ),
-
             Text(
               item.description,
             ),
-
             if (hasReceipt)
               Padding(
-                padding:
-                    const EdgeInsets.only(
+                padding: const EdgeInsets.only(
                   top: 12,
                 ),
                 child: GestureDetector(
@@ -111,17 +93,14 @@ class ExpenseCard extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (_) =>
-                            ReceiptViewScreen(
-                          imagePath:
-                              item.receiptPath!,
+                        builder: (_) => ReceiptViewScreen(
+                          imagePath: item.receiptPath!,
                         ),
                       ),
                     );
                   },
                   child: ClipRRect(
-                    borderRadius:
-                        BorderRadius.circular(
+                    borderRadius: BorderRadius.circular(
                       12,
                     ),
                     child: Image.file(
@@ -129,8 +108,7 @@ class ExpenseCard extends StatelessWidget {
                         item.receiptPath!,
                       ),
                       height: 140,
-                      width:
-                          double.infinity,
+                      width: double.infinity,
                       fit: BoxFit.cover,
                       errorBuilder: (
                         context,
@@ -139,8 +117,7 @@ class ExpenseCard extends StatelessWidget {
                       ) {
                         return Container(
                           height: 140,
-                          alignment:
-                              Alignment.center,
+                          alignment: Alignment.center,
                           child: const Text(
                             'Unable to load receipt',
                           ),

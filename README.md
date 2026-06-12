@@ -43,11 +43,9 @@ lib/
 
 ├── services/
 
-├── screens/
-
-├── widgets/
-
-├── theme/
+├── ui/
+    -screens/
+    -widgets/
 
 └── utils/
 

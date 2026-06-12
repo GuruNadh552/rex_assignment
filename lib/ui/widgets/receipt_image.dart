@@ -16,7 +16,6 @@ class ReceiptImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     if (imagePath.isEmpty) {
       return const Center(
         child: Text('No receipt'),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../models/claim.dart';
-import 'claims_service.dart';
+import 'package:rex_assignment/models/claim.dart';
+import 'package:rex_assignment/services/claims_service.dart';
 
 enum SortOption {
   newest,
@@ -10,9 +10,7 @@ enum SortOption {
   amountLow,
 }
 
-class ClaimsProvider
-    extends ChangeNotifier {
-
+class ClaimsProvider extends ChangeNotifier {
   final ClaimsService service;
 
   ClaimsProvider(this.service);
@@ -23,21 +21,18 @@ class ClaimsProvider
 
   ClaimStatus? selectedStatus;
 
-  SortOption selectedSort =
-      SortOption.newest;
+  SortOption selectedSort = SortOption.newest;
 
   List<Claim> _claims = [];
 
-  List<Claim> get claims =>
-      _claims;
+  List<Claim> get claims => _claims;
 
   Future<void> loadClaims() async {
     isLoading = true;
 
     notifyListeners();
 
-    _claims =
-        await service.getClaims();
+    _claims = await service.getClaims();
 
     _sortClaims();
 
@@ -50,8 +45,7 @@ class ClaimsProvider
     switch (selectedSort) {
       case SortOption.newest:
         _claims.sort(
-          (a, b) => b.expenseDate
-              .compareTo(
+          (a, b) => b.expenseDate.compareTo(
             a.expenseDate,
           ),
         );
@@ -59,8 +53,7 @@ class ClaimsProvider
 
       case SortOption.oldest:
         _claims.sort(
-          (a, b) => a.expenseDate
-              .compareTo(
+          (a, b) => a.expenseDate.compareTo(
             b.expenseDate,
           ),
         );
@@ -68,8 +61,7 @@ class ClaimsProvider
 
       case SortOption.amountHigh:
         _claims.sort(
-          (a, b) => b.totalAmount
-              .compareTo(
+          (a, b) => b.totalAmount.compareTo(
             a.totalAmount,
           ),
         );
@@ -77,8 +69,7 @@ class ClaimsProvider
 
       case SortOption.amountLow:
         _claims.sort(
-          (a, b) => a.totalAmount
-              .compareTo(
+          (a, b) => a.totalAmount.compareTo(
             b.totalAmount,
           ),
         );
@@ -87,30 +78,18 @@ class ClaimsProvider
   }
 
   List<Claim> get filteredClaims {
-    final query =
-        searchQuery.toLowerCase();
+    final query = searchQuery.toLowerCase();
 
     return _claims.where(
       (claim) {
-        final searchMatch =
-            claim.claimNumber
-                    .toLowerCase()
-                    .contains(query) ||
-                claim.employeeName
-                    .toLowerCase()
-                    .contains(query) ||
-                claim.purpose
-                    .toLowerCase()
-                    .contains(query);
+        final searchMatch = claim.claimNumber.toLowerCase().contains(query) ||
+            claim.employeeName.toLowerCase().contains(query) ||
+            claim.purpose.toLowerCase().contains(query);
 
         final statusMatch =
-            selectedStatus ==
-                    null ||
-                claim.status ==
-                    selectedStatus;
+            selectedStatus == null || claim.status == selectedStatus;
 
-        return searchMatch &&
-            statusMatch;
+        return searchMatch && statusMatch;
       },
     ).toList();
   }
@@ -118,10 +97,7 @@ class ClaimsProvider
   List<Claim> get managerClaims {
     return filteredClaims
         .where(
-          (e) =>
-              e.status ==
-              ClaimStatus
-                  .submitted,
+          (e) => e.status == ClaimStatus.submitted,
         )
         .toList();
   }
@@ -200,42 +176,27 @@ class ClaimsProvider
     notifyListeners();
   }
 
-  int get draftCount =>
-      _claims
-          .where(
-            (e) =>
-                e.status ==
-                ClaimStatus.draft,
-          )
-          .length;
+  int get draftCount => _claims
+      .where(
+        (e) => e.status == ClaimStatus.draft,
+      )
+      .length;
 
-  int get submittedCount =>
-      _claims
-          .where(
-            (e) =>
-                e.status ==
-                ClaimStatus
-                    .submitted,
-          )
-          .length;
+  int get submittedCount => _claims
+      .where(
+        (e) => e.status == ClaimStatus.submitted,
+      )
+      .length;
 
-  int get approvedCount =>
-      _claims
-          .where(
-            (e) =>
-                e.status ==
-                ClaimStatus
-                    .approved,
-          )
-          .length;
+  int get approvedCount => _claims
+      .where(
+        (e) => e.status == ClaimStatus.approved,
+      )
+      .length;
 
-  int get rejectedCount =>
-      _claims
-          .where(
-            (e) =>
-                e.status ==
-                ClaimStatus
-                    .rejected,
-          )
-          .length;
+  int get rejectedCount => _claims
+      .where(
+        (e) => e.status == ClaimStatus.rejected,
+      )
+      .length;
 }

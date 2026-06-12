@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/receipt_image.dart';
+import 'package:rex_assignment/ui/widgets/receipt_image.dart';
 
 class ReceiptViewScreen extends StatelessWidget {
   final String imagePath;
@@ -14,8 +14,7 @@ class ReceiptViewScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:
-            const Text(
+        title: const Text(
           'Receipt Preview',
         ),
       ),

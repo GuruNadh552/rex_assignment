@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
 
-class AppTextField
-    extends StatelessWidget {
-
-  final TextEditingController
-      controller;
+class AppTextField extends StatelessWidget {
+  final TextEditingController controller;
 
   final String hint;
 
-  final TextInputType?
-      keyboardType;
+  final TextInputType? keyboardType;
 
   final int maxLines;
 
-  final String? Function(String?)?
-      validator;
+  final String? Function(String?)? validator;
 
   const AppTextField({
     super.key,
@@ -29,12 +24,10 @@ class AppTextField
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
-      keyboardType:
-          keyboardType,
+      keyboardType: keyboardType,
       maxLines: maxLines,
       validator: validator,
-      decoration:
-          InputDecoration(
+      decoration: InputDecoration(
         hintText: hint,
       ),
     );

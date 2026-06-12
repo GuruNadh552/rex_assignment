@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'services/claims_provider.dart';
 import 'services/claims_service.dart';
-import 'screens/startup_screen.dart';
+import 'ui/startup_screen.dart';
 import 'theme/app_theme.dart';
 
 void main() {
@@ -11,8 +11,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) =>
-              ClaimsProvider(
+          create: (_) => ClaimsProvider(
             LocalClaimsService(),
           ),
         ),

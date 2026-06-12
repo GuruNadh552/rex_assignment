@@ -15,34 +15,26 @@ class DashboardCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding:
-          const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color:
-            color.withOpacity(.12),
-        borderRadius:
-            BorderRadius.circular(
+        color: color.withAlpha((.12 * 255).round()),
+        borderRadius: BorderRadius.circular(
           18,
         ),
       ),
       child: Column(
         children: [
-
           Text(
             value,
-            style:
-                TextStyle(
+            style: TextStyle(
               color: color,
-              fontWeight:
-                  FontWeight.bold,
+              fontWeight: FontWeight.bold,
               fontSize: 24,
             ),
           ),
-
           const SizedBox(
             height: 6,
           ),
-
           Text(title),
         ],
       ),

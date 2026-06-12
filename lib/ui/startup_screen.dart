@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../theme/app_colors.dart';
-import 'claim_list_screen.dart';
+import 'package:rex_assignment/theme/app_colors.dart';
+import 'package:rex_assignment/ui/manager/claim_list_screen.dart';
 
 class StartupScreen extends StatelessWidget {
   const StartupScreen({super.key});
@@ -11,22 +11,17 @@ class StartupScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding:
-              const EdgeInsets.all(24),
+          padding: const EdgeInsets.all(24),
           child: Column(
-            crossAxisAlignment:
-                CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               const SizedBox(height: 30),
-
               Container(
                 width: 72,
                 height: 72,
                 decoration: BoxDecoration(
                   color: AppColors.primary,
-                  borderRadius:
-                      BorderRadius.circular(
+                  borderRadius: BorderRadius.circular(
                     20,
                   ),
                 ),
@@ -36,84 +31,63 @@ class StartupScreen extends StatelessWidget {
                   size: 40,
                 ),
               ),
-
               const SizedBox(height: 24),
-
               const Text(
                 'REX Expense',
                 style: TextStyle(
                   fontSize: 32,
-                  fontWeight:
-                      FontWeight.w800,
+                  fontWeight: FontWeight.w800,
                 ),
               ),
-
               const SizedBox(height: 10),
-
               const Text(
                 'Expense reimbursement made simple',
                 style: TextStyle(
-                  color:
-                      AppColors.textSecondary,
+                  color: AppColors.textSecondary,
                   fontSize: 16,
                 ),
               ),
-
               const SizedBox(height: 50),
-
               const Text(
                 'Continue As',
                 style: TextStyle(
                   fontSize: 18,
-                  fontWeight:
-                      FontWeight.w700,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
-
               const SizedBox(height: 20),
-
               RoleCard(
                 title: 'Employee',
-                subtitle:
-                    'Create and submit expense claims',
-                icon:
-                    Icons.person_outline,
+                subtitle: 'Create and submit expense claims',
+                icon: Icons.person_outline,
                 onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (_) =>
-                          const ClaimListScreen(
+                      builder: (_) => const ClaimListScreen(
                         isManager: false,
                       ),
                     ),
                   );
                 },
               ),
-
               const SizedBox(height: 16),
-
               RoleCard(
                 title: 'Manager',
-                subtitle:
-                    'Review and approve claims',
-                icon: Icons
-                    .admin_panel_settings_outlined,
+                subtitle: 'Review and approve claims',
+                icon: Icons.admin_panel_settings_outlined,
                 onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (_) =>
-                          const ClaimListScreen(
+                      builder: (_) => const ClaimListScreen(
                         isManager: true,
                       ),
                     ),
                   );
                 },
               ),
-
               const Spacer(),
-
               Center(
                 child: Text(
                   'Version 1.0.0',
@@ -147,16 +121,13 @@ class RoleCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      borderRadius:
-          BorderRadius.circular(20),
+      borderRadius: BorderRadius.circular(20),
       onTap: onTap,
       child: Container(
-        padding:
-            const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: AppColors.card,
-          borderRadius:
-              BorderRadius.circular(
+          borderRadius: BorderRadius.circular(
             20,
           ),
           border: Border.all(
@@ -165,61 +136,44 @@ class RoleCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-
             Container(
               width: 56,
               height: 56,
               decoration: BoxDecoration(
-                color: AppColors.primary
-                    .withOpacity(.15),
-                borderRadius:
-                    BorderRadius.circular(
+                color: AppColors.primary.withAlpha((.15 * 255).round()),
+                borderRadius: BorderRadius.circular(
                   16,
                 ),
               ),
               child: Icon(
                 icon,
-                color:
-                    AppColors.primary,
+                color: AppColors.primary,
               ),
             ),
-
             const SizedBox(width: 16),
-
             Expanded(
               child: Column(
-                crossAxisAlignment:
-                    CrossAxisAlignment
-                        .start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
                   Text(
                     title,
-                    style:
-                        const TextStyle(
+                    style: const TextStyle(
                       fontSize: 18,
-                      fontWeight:
-                          FontWeight
-                              .w700,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
-
                   const SizedBox(
                     height: 4,
                   ),
-
                   Text(
                     subtitle,
-                    style:
-                        const TextStyle(
-                      color: AppColors
-                          .textSecondary,
+                    style: const TextStyle(
+                      color: AppColors.textSecondary,
                     ),
                   ),
                 ],
               ),
             ),
-
             const Icon(
               Icons.arrow_forward_ios,
               size: 18,

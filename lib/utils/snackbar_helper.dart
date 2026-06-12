@@ -7,12 +7,10 @@ class SnackbarHelper {
     BuildContext context,
     String message,
   ) {
-    ScaffoldMessenger.of(context)
-        .showSnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
-        backgroundColor:
-            Colors.green,
+        backgroundColor: Colors.green,
       ),
     );
   }
@@ -21,12 +19,10 @@ class SnackbarHelper {
     BuildContext context,
     String message,
   ) {
-    ScaffoldMessenger.of(context)
-        .showSnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
-        backgroundColor:
-            Colors.red,
+        backgroundColor: Colors.red,
       ),
     );
   }
@@ -35,8 +31,7 @@ class SnackbarHelper {
     BuildContext context,
     String message,
   ) {
-    ScaffoldMessenger.of(context)
-        .showSnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
       ),

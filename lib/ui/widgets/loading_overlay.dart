@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-class LoadingOverlay
-    extends StatelessWidget {
-
+class LoadingOverlay extends StatelessWidget {
   final bool isLoading;
 
   final Widget child;
@@ -17,15 +15,12 @@ class LoadingOverlay
   Widget build(BuildContext context) {
     return Stack(
       children: [
-
         child,
-
         if (isLoading)
           Container(
             color: Colors.black54,
             child: const Center(
-              child:
-                  CircularProgressIndicator(),
+              child: CircularProgressIndicator(),
             ),
           ),
       ],

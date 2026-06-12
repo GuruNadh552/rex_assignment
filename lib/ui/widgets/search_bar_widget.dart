@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
-class SearchBarWidget
-    extends StatelessWidget {
-
-  final Function(String)
-      onChanged;
+class SearchBarWidget extends StatelessWidget {
+  final Function(String) onChanged;
 
   const SearchBarWidget({
     super.key,
@@ -15,14 +12,11 @@ class SearchBarWidget
   Widget build(BuildContext context) {
     return TextField(
       onChanged: onChanged,
-      decoration:
-          InputDecoration(
-        prefixIcon:
-            const Icon(
+      decoration: InputDecoration(
+        prefixIcon: const Icon(
           Icons.search,
         ),
-        hintText:
-            'Search claims...',
+        hintText: 'Search claims...',
       ),
     );
   }

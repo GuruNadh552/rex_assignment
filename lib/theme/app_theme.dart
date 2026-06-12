@@ -8,15 +8,11 @@ class AppTheme {
   static ThemeData darkTheme = ThemeData(
     useMaterial3: true,
     brightness: Brightness.dark,
-
-    scaffoldBackgroundColor:
-        AppColors.background,
-
+    scaffoldBackgroundColor: AppColors.background,
     colorScheme: const ColorScheme.dark(
       primary: AppColors.primary,
       surface: AppColors.surface,
     ),
-
     appBarTheme: const AppBarTheme(
       backgroundColor: AppColors.card,
       elevation: 0,
@@ -27,46 +23,33 @@ class AppTheme {
         fontWeight: FontWeight.w700,
       ),
     ),
-
     cardTheme: CardThemeData(
       color: AppColors.card,
       shape: RoundedRectangleBorder(
-        borderRadius:
-            BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(18),
       ),
       margin: EdgeInsets.zero,
     ),
-
-    inputDecorationTheme:
-        InputDecorationTheme(
+    inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: AppColors.card,
-
       hintStyle: const TextStyle(
         color: AppColors.textSecondary,
       ),
-
       border: OutlineInputBorder(
-        borderRadius:
-            BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(14),
         borderSide: const BorderSide(
           color: AppColors.border,
         ),
       ),
-
-      enabledBorder:
-          OutlineInputBorder(
-        borderRadius:
-            BorderRadius.circular(14),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(14),
         borderSide: const BorderSide(
           color: AppColors.border,
         ),
       ),
-
-      focusedBorder:
-          OutlineInputBorder(
-        borderRadius:
-            BorderRadius.circular(14),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(14),
         borderSide: const BorderSide(
           color: AppColors.primary,
           width: 1.5,
